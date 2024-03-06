@@ -1,0 +1,116 @@
+{
+  "name": "electron-note",
+  "version": "0.2.0",
+  "private": true,
+  "main": "main.js",
+  "author": {
+    "name": "linjiahong",
+    "email": "Mcljhong@outlook.com"
+  },
+  "repository": "https://github.com/LinJiaHongAlan/electron-note",
+  "dependencies": {
+    "@craco/craco": "^7.1.0",
+    "@electron/remote": "^2.0.9",
+    "ace-builds": "^1.21.1",
+    "electron-is-dev": "^2.0.0",
+    "electron-log": "^4.4.8",
+    "electron-store": "^8.1.0",
+    "react-ace": "^10.1.0"
+  },
+  "build": {
+    "appId": "com.electron.electronic.note",
+    "productName": "云文档",
+    "copyright": "Copyright © year ${author}",
+    "directories": {
+      "buildResources": "assets"
+    },
+    "publish": [
+      {
+        "provider": "generic",
+        "url": "http://172.168.50.235:3332/win32"
+      }
+    ],
+    "extraMetadata": {
+      "main": "./build/main.js"
+    },
+    "win": {
+      "target": [
+        "msi",
+        "nsis"
+      ],
+      "verifyUpdateCodeSignature": false,
+      "icon": "assets/icon.ico",
+      "artifactName": "${productName}-Web-Setup-${version}.${ext}",
+      "publisherName": "linjiahong"
+    },
+    "nsis": {
+      "allowToChangeInstallationDirectory": true,
+      "oneClick": false,
+      "perMachine": false
+    },
+    "files": [
+      "build/**/*",
+      "node_modules/**/*",
+      "package.json"
+    ],
+    "extends": null
+  },
+  "homepage": "./",
+  "scripts": {
+    "start": "craco start",
+    "build": "craco build",
+    "buildMain": "webpack",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "ele": "electron .",
+    "dev": "concurrently \"cross-env BROWSER=none npm run start\" \"wait-on http://127.0.0.1:3000 && npm run ele\"",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "release": "electron-builder",
+    "prerelease": "npm run build && npm run buildMain",
+    "prepack": "npm run build && npm run buildMain",
+    "predist": "npm run build && npm run buildMain"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@ant-design/icons": "^5.0.1",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "antd": "^5.4.6",
+    "classnames": "^2.3.2",
+    "concurrently": "^8.0.1",
+    "cross-env": "^7.0.3",
+    "easymde": "^2.18.0",
+    "electron": "^24.1.3",
+    "electron-builder": "^23.6.0",
+    "electron-updater": "^5.3.0",
+    "immutability-helper": "^3.1.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.11.1",
+    "react-scripts": "5.0.1",
+    "react-simplemde-editor": "^5.2.0",
+    "styled-components": "^5.3.10",
+    "wait-on": "^7.0.1",
+    "web-vitals": "^2.1.4",
+    "webpack-cli": "^5.1.0"
+  }
+}

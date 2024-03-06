@@ -1,0 +1,3 @@
+provider: generic
+url: http://172.168.50.235:3332/win32
+updaterCacheDirName: electron-note-updater
